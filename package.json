@@ -4,7 +4,9 @@
   "description": "In house framework LMG",
   "main": "vite-plugin/Js2Scss.ts",
   "style": "src/framework/index.scss",
-  "repository": "https://github.com/mauvaisgarcons/lmg.git",
+  "repository": {
+    "url:":"https://github.com/mauvaisgarcons/lmg.git"
+  },
   "bugs": {
     "url": "https://github.com/mauvaisgarcons/lmg/issues"
   },
