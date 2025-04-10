@@ -1,10 +1,14 @@
 {
-  "name": "@lmg/framework",
+  "name": "@lmg-agence/framework",
   "version": "1.0.0",
   "description": "In house framework LMG",
   "main": "vite-plugin/Js2Scss.ts",
   "style": "src/framework/index.scss",
   "repository": "https://github.com/mauvaisgarcons/lmg.git",
+  "bugs": {
+    "url": "https://github.com/mauvaisgarcons/lmg/issues"
+  },
+  "homepage": "https://github.com/mauvaisgarcons/lmg#readme",
   "scripts": {
     "build": "vite build",
     "prepare": "npm run build"
