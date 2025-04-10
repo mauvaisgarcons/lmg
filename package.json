@@ -1,6 +1,6 @@
 {
   "name": "@lmg-agence/framework",
-  "version": "1.0.5-alpha",
+  "version": "1.0.6-alpha",
   "description": "In house framework LMG",
   "main": "dist/LMGFramework.js",
   "style": "src/framework/index.scss",

@@ -1,48 +1,49 @@
 @use "./config" as *;
 @use "@/sass/abstracts" as *;
+@use "sass:map";
 
 // Configuration des tailles de texte avec des propriétés comme font-size et line-height
 $text-size: (
     xs: (
         font-size: bm(
-            map-get($font-base, mobile) * 0.8,
-            map-get($font-base, desktop) * 0.8,
+            map.get($font-base, mobile) * 0.8,
+            map.get($font-base, desktop) * 0.8,
         ),
         line-height: normal,
     ),
 
     sm: (
         font-size: bm(
-            map-get($font-base, mobile) * 0.9,
-            map-get($font-base, desktop) * 0.9,
+            map.get($font-base, mobile) * 0.9,
+            map.get($font-base, desktop) * 0.9,
         ),
         line-height: normal,
     ),
     base: (
         font-size: bm(
-            map-get($font-base, mobile) * 1,
-            map-get($font-base, desktop) * 1
+            map.get($font-base, mobile) * 1,
+            map.get($font-base, desktop) * 1
         ),
         line-height: normal,
     ),
     md: (
         font-size: bm(
-            map-get($font-base, mobile) * 1.25,
-            map-get($font-base, desktop) * 1.25,
+            map.get($font-base, mobile) * 1.25,
+            map.get($font-base, desktop) * 1.25,
         ),
         line-height: normal,
     ),
     lg: (
         font-size: bm(
-            map-get($font-base, mobile) * 1.5,
-            map-get($font-base, desktop) * 1.5,
+            map.get($font-base, mobile) * 1.5,
+            map.get($font-base, desktop) * 1.5,
         ),
         line-height: normal,
     ),
     xl: (
         font-size: bm(
-            map-get($font-base, mobile) * 1.8,
-            map-get($font-base, desktop) * 1.8,
+            map.get($font-base, mobile) * 1.8,
+            map.get($font-base, desktop) * 1.8,
         ),
         line-height: normal,
     ),
@@ -50,57 +51,57 @@ $text-size: (
     // Tailles supplémentaires pour les textes très grands
     "2xl":  (
         font-size: bm(
-            map-get($font-base, mobile) * 2,
-            map-get($font-base, desktop) * 2,
+            map.get($font-base, mobile) * 2,
+            map.get($font-base, desktop) * 2,
         ),
         line-height: normal,
     ),
     "3xl":  (
         font-size: bm(
-            map-get($font-base, mobile) * 2.2,
-            map-get($font-base, desktop) * 2.2,
+            map.get($font-base, mobile) * 2.2,
+            map.get($font-base, desktop) * 2.2,
         ),
         line-height: normal,
     ),
     "4xl":  (
         font-size: bm(
-            map-get($font-base, mobile) * 2.4,
-            map-get($font-base, desktop) * 2.4,
+            map.get($font-base, mobile) * 2.4,
+            map.get($font-base, desktop) * 2.4,
         ),
         line-height: normal,
     ),
     "5xl":  (
         font-size: bm(
-            map-get($font-base, mobile) * 2.6,
-            map-get($font-base, desktop) * 2.6,
+            map.get($font-base, mobile) * 2.6,
+            map.get($font-base, desktop) * 2.6,
         ),
         line-height: normal,
     ),
     "6xl":  (
         font-size: bm(
-            map-get($font-base, mobile) * 2.8,
-            map-get($font-base, desktop) * 2.8,
+            map.get($font-base, mobile) * 2.8,
+            map.get($font-base, desktop) * 2.8,
         ),
         line-height: normal,
     ),
     "7xl":  (
         font-size: bm(
-            map-get($font-base, mobile) * 3,
-            map-get($font-base, desktop) * 3,
+            map.get($font-base, mobile) * 3,
+            map.get($font-base, desktop) * 3,
         ),
         line-height: normal
     ),
     "8xl":  (
         font-size: bm(
-            map-get($font-base, mobile) * 3.2,
-            map-get($font-base, desktop) * 3.2,
+            map.get($font-base, mobile) * 3.2,
+            map.get($font-base, desktop) * 3.2,
         ),
         line-height: normal
     ),
     "9xl":  (
         font-size: bm(
-            map-get($font-base, mobile) * 3.4,
-            map-get($font-base, desktop) * 3.4,
+            map.get($font-base, mobile) * 3.4,
+            map.get($font-base, desktop) * 3.4,
         ),
         line-height: normal
     )
@@ -132,43 +133,43 @@ $text-size: (
 $heading-size: (
     h1: (
         font-size: bm(
-            map-get($font-base, mobile) * 4,
-            map-get($font-base, desktop) * 4,
+            map.get($font-base, mobile) * 4,
+            map.get($font-base, desktop) * 4,
         ),
         line-height: normal,
     ),
     h2: (
         font-size: bm(
-            map-get($font-base, mobile) * 3.6,
-            map-get($font-base, desktop) * 3.6,
+            map.get($font-base, mobile) * 3.6,
+            map.get($font-base, desktop) * 3.6,
         ),
         line-height: normal,
     ),
     h3: (
         font-size: bm(
-            map-get($font-base, mobile) * 3.2,
-            map-get($font-base, desktop) * 3.2,
+            map.get($font-base, mobile) * 3.2,
+            map.get($font-base, desktop) * 3.2,
         ),
         line-height: normal,
     ),
     h4: (
         font-size: bm(
-            map-get($font-base, mobile) * 2.8,
-            map-get($font-base, desktop) * 2.8,
+            map.get($font-base, mobile) * 2.8,
+            map.get($font-base, desktop) * 2.8,
         ),
         line-height: normal,
     ),
     h5: (
         font-size: bm(
-            map-get($font-base, mobile) * 2.4,
-            map-get($font-base, desktop) * 2.4,
+            map.get($font-base, mobile) * 2.4,
+            map.get($font-base, desktop) * 2.4,
         ),
         line-height: normal,
     ),
     h6: (
         font-size: bm(
-            map-get($font-base, mobile) * 2,
-            map-get($font-base, desktop) * 2,
+            map.get($font-base, mobile) * 2,
+            map.get($font-base, desktop) * 2,
         ),
         line-height: normal,
     )
