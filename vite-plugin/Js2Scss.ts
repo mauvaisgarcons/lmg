@@ -9,27 +9,28 @@ export default function Js2Scss(config: Js2ScssConfig) {
   return {
     name: 'lmg-js2scss',
     buildStart() {
+      let configPath = "./theme.config.js";
       const scriptPath = path.resolve(process.cwd(), 'theme.config.js');
-      // Load the JavaScript configuration file
-      // Check if the con/figuration file exists
-      if (!fs.existsSync(scriptPath)) {
-        console.log(`Warning: File not found: ${scriptPath}`);
-      } else {
-        import('./theme.config.js').then((module) => () => {
-            // Convert the theme object to SCSS format
-            const scssConfig = convertConfigToScss(module.default.theme.theme);
-            const scssFileOutput = config.output || '/resources/sass/framework/_config.scss';
-            const scssPath = path.resolve(process.cwd(), scssFileOutput);
 
-            const scssPathRoot = path.resolve(process.cwd(), '/resources/sass/framework/_root.scss');
-
-            // Write the SCSS configuration to the output file
-            fs.writeFileSync(process.cwd() + scssFileOutput, scssConfig.config);
-            fs.writeFileSync(process.cwd() + scssPathRoot, scssConfig.root);
-
-            console.log(`SCSS configuration file generated: ${scssPath}`);
-        });
+      if(fs.existsSync(scriptPath)){
+        configPath = scriptPath;
       }
+  
+
+      import(configPath).then((module) => {
+        // Convert the theme object to SCSS format
+        const scssConfig = convertConfigToScss(module.default.theme);
+        const scssFileOutput = config.output || '/resources/sass/framework/_config.scss';
+        const scssPath = path.resolve(process.cwd(), scssFileOutput);
+
+        const scssPathRoot = path.resolve(process.cwd(), '/resources/sass/framework/_root.scss');
+
+        // Write the SCSS configuration to the output file
+        fs.writeFileSync(process.cwd() + scssFileOutput, scssConfig.config);
+        fs.writeFileSync(process.cwd() + scssPathRoot, scssConfig.root);
+
+        console.log(`SCSS configuration file generated: ${scssPath}`);
+    });
     },
   };
 }
