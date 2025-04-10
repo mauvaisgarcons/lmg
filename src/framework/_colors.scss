@@ -1,0 +1,56 @@
+@use "./config" as *;
+
+$numbers: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950;
+$shade-light: (50, 100, 200, 300, 400);
+$shade-dark: (600, 700, 800, 900, 950);
+
+@each $theme in ("primary", "secondary", "accent", "gray", "warning", "error", "success") { 
+    // Classe pour définir la couleur de fond en fonction du thème
+    .bg-#{$theme}{
+        background-color: var(--#{$theme});
+        
+        // Variante pour définir la couleur du texte en fonction du thème
+        &.text-foreground{
+            color: var(--#{$theme}-text-foreground);
+        }
+
+        // Génération des classes pour chaque nuance de couleur
+        @each $value in $numbers {
+            &-#{$value} {
+                background-color: var(--#{$theme}-#{$value});
+                
+                // Variante pour définir la couleur du texte pour chaque nuance
+                &.text-foreground{
+                    color: var(--#{$theme}-text-foreground);
+                }
+            }
+        }
+    }
+
+    // Classe pour définir la couleur du texte en fonction du thème
+    .text-#{$theme}{
+       color: var(--#{$theme});
+       
+       // Génération des classes pour chaque nuance de couleur
+       @each $value in $numbers {
+            &-#{$value} {
+                color: var(--#{$theme}-#{$value});
+                
+            }
+        }
+    }
+} 
+
+@each $breakpoint, $breakpoint-value in $breakpoints {
+    @each $theme in ("primary", "secondary", "accent", "gray"){ 
+
+        @media screen and (min-width: $breakpoint-value) {
+            .#{$breakpoint}\:bg-#{$theme}{
+                background-color: var(--#{$theme}); 
+            }
+            .#{$breakpoint}\:text-#{$theme}{
+                color: var(--#{$theme}); 
+            }
+        }
+    }    
+}

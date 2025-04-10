@@ -1,0 +1,30 @@
+@use "./config" as *;
+@use "@/sass/abstracts" as *;
+
+$positions: (
+    static: static,
+    fixed: fixed,
+    absolute: absolute,
+    inline-grid: inline-grid,
+    relative: relative,
+    sticky: sticky,
+);
+
+
+@each $position, $value in $positions {
+    // Génération des classes pour chaque taille de conteneur
+    .#{$position} {
+        position: $value;
+    }
+}
+
+@each $breakpoint, $breakpoint-value in $breakpoints {
+    @media screen and (min-width: $breakpoint-value) {   
+        @each $position, $value in $positions {
+            // Génération des classes pour chaque taille de conteneur
+            .#{$breakpoint}\:#{$position} {
+                position: $value;
+            }
+        }
+    }
+}

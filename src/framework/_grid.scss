@@ -1,0 +1,110 @@
+@use "./config" as *;
+@use "@/sass/abstracts" as *;
+
+// Définition des tailles d'espacement (gap) pour la grille
+$gap-sizes: (
+    none: 0,
+    xs: bm(10, 10),
+    sm: bm(20, 20),
+    md: bm(30, 40),
+    lg: bm(40, 80),
+    xl: bm(60, 100),
+    "2xl": bm(100, 200),
+    "3xl": bm(120, 240)
+);
+
+// Génération des classes pour les gaps (espacement entre les éléments)
+@each $size, $value in $gap-sizes {
+    .gap-#{$size} {
+        gap: $value; // Espacement global
+    }
+    .gap-y-#{$size} {
+        row-gap: $value; // Espacement vertical
+    }
+    .gap-x-#{$size} {
+        column-gap: $value; // Espacement horizontal
+    }
+
+
+    // Ajout des variantes responsives pour chaque point de rupture
+    @each $breakpoint, $breakpoint-value in $breakpoints {
+        @media screen and (min-width: $breakpoint-value) {
+            .#{$breakpoint}\:gap-#{$size} {
+                gap: $value;
+            }
+            .#{$breakpoint}\:gap-x-#{$size} {
+                row-gap: $value;
+            }
+            .#{$breakpoint}\:gap-#{$size} {
+                column-gap: $value;
+            }
+        }
+    }
+}
+
+// Définition de la grille principale
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr)); // 12 colonnes par défaut
+}
+// Génération des classes pour définir le nombre de colonnes et de lignes
+@for $i from 1 through 12 {
+    .grid-cols-#{$i} {
+        grid-template-columns: repeat(#{$i}, minmax(0, 1fr)); // Colonnes dynamiques
+    }
+
+    .grid-rows-#{$i} {
+        grid-template-rows: repeat(#{$i}, minmax(0, 1fr)); // Lignes dynamiques
+    }
+}
+
+
+  // Ajout des variantes responsives pour chaque point de rupture
+  @each $breakpoint, $breakpoint-value in $breakpoints {
+    @media screen and (min-width: $breakpoint-value) {
+        @for $i from 1 through 12 {
+            .#{$breakpoint}\:grid-cols-#{$i} {
+                grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+            }
+    
+            .#{$breakpoint}\:grid-rows-#{$i} {
+                grid-template-rows: repeat(#{$i}, minmax(0, 1fr));
+            }
+        }
+
+    }
+}
+
+// Génération des classes pour la largeur des colonnes (col-span)
+@for $i from 1 through 12 {
+    .col-span-#{$i} {
+        grid-column: span #{$i}; // Étendue de la colonne
+    }
+    @each $breakpoint, $breakpoint-value in $breakpoints {
+        @media screen and (min-width: $breakpoint-value) {
+            .#{$breakpoint}\:col-span-full {
+                grid-column: span 12; // Étendue complète
+            }
+            .#{$breakpoint}\:col-span-#{$i} {
+                grid-column: span #{$i};
+            }
+        }
+    }
+}
+
+// Génération des classes pour la hauteur des lignes (row-span)
+@for $i from 1 through 12 {
+    .row-span-#{$i} {
+        grid-row: span #{$i}; // Étendue de la ligne
+    }
+    @each $breakpoint, $breakpoint-value in $breakpoints {
+        @media screen and (min-width: $breakpoint-value) {
+            .#{$breakpoint}\:row-span-full {
+                grid-row: span 12; // Étendue complète
+            }
+            .#{$breakpoint}\:row-span-#{$i} {
+                grid-row: span #{$i};
+            }
+        }
+    }
+}

@@ -1,0 +1,140 @@
+@use "./config" as *;
+
+
+// Classes pour définir la propriété flex
+.flex-1 {
+    flex: 1 1 0%;
+}
+
+.flex-auto {
+    flex: 1 1 auto;
+}
+
+.flex-initial {
+    flex: 0 1 auto;
+}
+
+.flex-none {
+    flex: none;
+}
+
+// Classes pour définir la direction du flex
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-row-reverse {
+    flex-direction: row-reverse;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-col-reverse {
+    flex-direction: column-reverse;
+}
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+// Génération des classes responsives pour les propriétés flex et flex-direction
+@each $breakpoint, $breakpoint-value in $breakpoints {
+    @media screen and (min-width: $breakpoint-value) {
+
+        .#{$breakpoint}\:flex-1 {
+            flex: 1 1 0%;
+        }
+        
+        .#{$breakpoint}\:flex-auto {
+            flex: 1 1 auto;
+        }
+        
+        .#{$breakpoint}\:flex-initial {
+            flex: 0 1 auto;
+        }
+        
+        .#{$breakpoint}\:flex-none {
+            flex: none;
+        }
+        
+        .#{$breakpoint}\:flex-row {
+            flex-direction: row;
+        }
+        
+        .#{$breakpoint}\:flex-row-reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .#{$breakpoint}\:flex-col {
+            flex-direction: column;
+        }
+        
+        .#{$breakpoint}\:flex-col-reverse {
+            flex-direction: column-reverse;
+        }
+        .#{$breakpoint}\:flex-wrap {
+            flex-wrap: wrap;
+        }
+        
+    }
+}
+
+// Définition des valeurs pour la propriété justify-content
+$justify-sizes: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    between: space-between,
+    around: space-around,
+    evenly: space-evenly,
+    stretch: stretch,
+    normal: normal
+);
+
+// Génération des classes pour justify-content
+@each $size, $value in $justify-sizes {
+    .justify-#{$size} {
+        justify-content: $value;
+    }
+}
+
+// Génération des classes responsives pour justify-content
+@each $breakpoint, $breakpoint-value in $breakpoints {
+    @media screen and (min-width: $breakpoint-value) {
+        .#{$breakpoint}\:inline-flex {
+            display: inline-flex;
+        }
+        @each $size, $value in $justify-sizes {
+            .#{$breakpoint}\:justify-#{$size} {
+                justify-content: $value;
+            }
+        }
+    }
+}
+
+// Définition des valeurs pour la propriété align-items
+$align-sizes: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    normal: normal
+);
+
+// Génération des classes pour align-items
+@each $size, $value in $align-sizes {
+    .align-#{$size} {
+        align-items: $value;
+    }
+}
+
+// Génération des classes responsives pour align-items
+@each $breakpoint, $breakpoint-value in $breakpoints {
+    @media screen and (min-width: $breakpoint-value) {
+        @each $size, $value in $align-sizes {
+            .#{$breakpoint}\:align-#{$size} {
+                align-items: $value;
+            }
+        }
+    }
+}

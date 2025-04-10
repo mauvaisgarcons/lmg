@@ -1,0 +1,41 @@
+@use "./config" as *;
+@use "@/sass/abstracts" as *;
+
+// Génération des classes pour les ratios d'aspect
+@for $i from 1 through 12 {
+    .aspect-#{$i}\/12 {
+        aspect-ratio: #{$i} / 12;
+    }
+    .aspect-12\/#{$i} {
+        aspect-ratio: 12 / #{$i};
+    }
+}
+
+.aspect-square{
+    aspect-ratio: 1 / 1;
+}
+.aspect-auto{
+    aspect-ratio: auto;
+}
+
+// Génération des classes responsives pour les modificateurs de texte
+@each $breakpoint, $breakpoint-value in $breakpoints {
+    @media screen and (min-width: $breakpoint-value) {   
+        // Génération des classes pour les ratios d'aspect
+        .#{$breakpoint}\:aspect-square{
+            aspect-ratio: 1 / 1;
+        }
+        .#{$breakpoint}\:aspect-auto{
+            aspect-ratio: auto;
+        }
+        
+        @for $i from 1 through 12 {
+            .#{$breakpoint}\:aspect-#{$i}\/12 {
+                aspect-ratio: #{$i} / 12;
+            }
+            .#{$breakpoint}\:aspect-12\/#{$i} {
+                aspect-ratio: 12 / #{$i};
+            }
+        }
+    }
+}

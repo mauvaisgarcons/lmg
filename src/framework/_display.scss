@@ -1,0 +1,32 @@
+@use "./config" as *;
+@use "@/sass/abstracts" as *;
+
+$displays: (
+    flex: flex,
+    inline-flex: inline-flex,
+    grid: grid,
+    inline-grid: inline-grid,
+    contents: content,
+    hidden: none,
+    block: block,
+    inline: inline
+);
+
+
+@each $display, $value in $displays {
+    // Génération des classes pour chaque taille de conteneur
+    .#{$display} {
+        display: $value;
+    }
+}
+
+@each $breakpoint, $breakpoint-value in $breakpoints {
+    @media screen and (min-width: $breakpoint-value) {   
+        @each $display, $value in $displays {
+            // Génération des classes pour chaque taille de conteneur
+            .#{$breakpoint}\:#{$display} {
+                display: $value;
+            }
+        }
+    }
+}

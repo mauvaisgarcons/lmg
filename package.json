@@ -1,0 +1,19 @@
+{
+  "name": "lmg",
+  "version": "1.0.0",
+  "description": "In house framework LMG",
+  "main": "vite-plugin/Js2Scss.ts",
+  "style": "src/framework/index.scss",
+  "scripts": {
+    "build": "vite build",
+    "prepare": "npm run build"
+  },
+  "author": "Les Mauvais Garçons",
+  "license": "ISC",
+  "dependencies": {
+    "vite": "^6.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0"
+  }
+}

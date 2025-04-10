@@ -1,0 +1,41 @@
+@use "./config" as *;
+
+// Définition des tailles de conteneurs pour différentes résolutions
+$container-sizes: (
+    xs: 400px, // Taille de conteneur pour très petit écran
+    sm: 600px, // Taille de conteneur pour petit écran
+    md: 820px, // Taille de conteneur pour écran moyen
+    lg: 1024px, // Taille de conteneur pour grand écran
+    xl: 1280px, // Taille de conteneur pour très grand écran
+    2xl: 1440px, // Taille de conteneur pour écran extra large
+    3xl: 1920px, // Taille de conteneur pour écran ultra large
+);
+
+// Styles de base pour les conteneurs
+.container {
+    margin: auto; // Centrer horizontalement le conteneur
+    @each $size, $value in $container-sizes {
+        // Génération des classes pour chaque taille de conteneur
+        &-#{$size} {
+            max-width: $value; // Définir la largeur maximale du conteneur
+            margin: auto; // Centrer horizontalement
+        }
+    }
+}
+
+// Génération des classes responsives basées sur les points de rupture
+@each $breakpoint, $breakpoint-value in $breakpoints {
+    // Classe de conteneur pour chaque point de rupture
+    .#{$breakpoint}\:container {
+        margin: auto; // Centrer horizontalement
+    }
+    @each $size, $value in $container-sizes {
+        @media screen and (min-width: $breakpoint-value) {
+            // Génération des classes de conteneur spécifiques à chaque taille et point de rupture
+            .#{$breakpoint}\:container-#{$size} {
+                max-width: $value; // Définir la largeur maximale du conteneur
+                margin: auto; // Centrer horizontalement
+            }
+        }
+    }
+}

@@ -1,0 +1,99 @@
+
+@use "./config" as *;
+@use "@/sass/abstracts" as *;
+
+/*
+ * Ce fichier SCSS génère des classes utilitaires pour les marges (m) et les espacements internes (p)
+ * en fonction des tailles définies dans la carte `$spacer-sizes` et des points de rupture définis dans `$breakpoints`.
+ *
+ * Variables principales :
+ * - `$breakpoints` : Définit les tailles d'écran pour les points de rupture (xs, sm, md, lg, xl, xxl).
+ * - `$spacer-sizes` : Définit les tailles d'espacement (none, xs, sm, md, lg, xl, 2xl, 3xl) avec des valeurs personnalisées.
+ *
+ * Fonctionnalités :
+ * - Génère des classes pour les marges horizontales (`mx-*`) et verticales (`my-*`).
+ * - Génère des classes pour les espacements internes horizontaux (`px-*`) et verticaux (`py-*`).
+ * - Ajoute des variantes spécifiques pour chaque point de rupture, par exemple : `.sm:mx-sm`, `.lg:py-lg`.
+ *
+ * Structure des classes générées :
+ * - `.m{x ou y}-{taille}` : Applique des marges horizontales ou verticales.
+ * - `.p{x ou y}-{taille}` : Applique des espacements internes horizontaux ou verticales.
+ * - `.breakpoint:m{x ou y}-{taille}` : Applique des marges spécifiques à un point de rupture.
+ * - `.breakpoint:p{x ou y}-{taille}` : Applique des espacements internes spécifiques à un point de rupture.
+ *
+ * Exemple d'utilisation :
+ * - `.mx-sm` : Applique une marge horizontale de taille "sm".
+ * - `.lg:py-lg` : Applique un espacement interne vertical de taille "lg" pour les écrans larges (lg).
+ *
+ * Remarque :
+ * - La fonction `bm()` utilisée dans `$spacer-sizes` doit être définie ailleurs dans le projet pour calculer les valeurs.
+ */
+$spacer-sizes: (
+    none: 0,
+    xs: bm(10, 10),
+    sm: bm(20, 20),
+    md: bm(20, 40),
+    lg: bm(40, 80),
+    xl: bm(60, 100),
+    "2xl": bm(100, 200),
+    "3xl": bm(120, 240)
+);
+// Generate classes for margin and padding with breakpoints
+$sides: (
+    t: top,
+    r: right,
+    b: bottom,
+    l: left,
+    x: inline,
+    y: block,
+);
+
+@each $side, $property in $sides {
+    @each $size, $value in $spacer-sizes {
+        .m#{$side}-#{$size} {
+            margin-#{$property}: #{$value};
+        }
+        .p#{$side}-#{$size} {
+            padding-#{$property}: #{$value};
+        }
+    }
+}
+
+// Generate responsive margin and padding classes for each breakpoint
+@each $breakpoint, $breakpoint-value in $breakpoints {
+    @each $side, $property in $sides {
+        @each $size, $value in $spacer-sizes {
+            @media screen and (min-width: $breakpoint-value) {
+                // Responsive margin class for the current breakpoint, side, and size
+                .#{$breakpoint}\:m#{$side}-#{$size} {
+                    margin-#{$property}: #{$value};
+                }
+                // Responsive padding class for the current breakpoint, side, and size
+                .#{$breakpoint}\:p#{$side}-#{$size} {
+                    padding-#{$property}: #{$value};
+                }
+            }
+        }
+    }
+}
+
+@for $i from 1 through 10 {
+    .width-#{$i * 10} {
+        width: #{$i * 10%};
+    }
+    .height-#{$i * 10} {
+        height: #{$i * 10%};
+    }
+}
+@each $breakpoint, $breakpoint-value in $breakpoints {
+    @for $i from 1 through 10 {
+        @media screen and (min-width: $breakpoint-value) {
+            .#{$breakpoint}\:width-#{$i * 10} {
+                width: #{$i * 10%};
+            }
+            .#{$breakpoint}\:height-#{$i * 10} {
+                height: #{$i * 10%};
+            }
+        }
+    }
+}
