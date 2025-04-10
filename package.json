@@ -2,7 +2,7 @@
   "name": "@lmg-agence/framework",
   "version": "1.0.5-alpha",
   "description": "In house framework LMG",
-  "main": "dist/Js2Scss.js",
+  "main": "dist/LMGFramework.js",
   "style": "src/framework/index.scss",
   "repository": {
     "url:":"https://github.com/mauvaisgarcons/lmg.git"

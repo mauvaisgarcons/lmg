@@ -4,9 +4,9 @@ export default defineConfig({
   root: './', // Adjust if your index.html is located in a different directory
   build: {
     lib: {
-        entry: 'vite-plugin/Js2Scss.js', // Entry point for your library (the SCSS plugin)
-        name: 'Js2Scss',
-        fileName: (format) => `Js2Scss.js`, // Output file names
+        entry: 'vite-plugin/LMGFramework.js', // Entry point for your library (the SCSS plugin)
+        name: 'LMGFramework',
+        fileName: (format) => `LMGFramework.js`, // Output file names
         formats: ['es', 'cjs'],
     },
     rollupOptions: {

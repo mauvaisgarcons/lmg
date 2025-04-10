@@ -1,35 +1,42 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import { Theme, Js2ScssConfig } from './TypeJs2Scss';
-import { hexToHSL } from './utils';
+import { Theme, LMGFrameworkConfig } from './TypeLMGFramework';
+import { hexToHSL } from './libs/utils';
 
 // Main function to generate SCSS configuration
-export default function Js2Scss(config: Js2ScssConfig) {
+export default function LMGFramework(config: LMGFrameworkConfig) {
 
   return {
+
     name: 'lmg-js2scss',
+
+    // Vite plugin hook to run when the build starts
     buildStart() {
-      let configPath = "./default.config.js";
-      const scriptPath = path.resolve(process.cwd(), 'theme.config.js');
 
-      if(fs.existsSync(scriptPath)){
-        configPath = scriptPath;
+      // Get the base path for the configuration file
+      let configPath = path.resolve(__dirname, 'default.config.js');
+      let userConfigPath = path.resolve(process.cwd(), 'theme.config.js');
+
+      // Check if the user config file exists
+      if (!fs.existsSync(userConfigPath)) {
+        console.log("theme.config.js not found, using default.config.js");
+      }else{
+        configPath = userConfigPath;
       }
-  
-
+      
+      // Import the configuration file
       import(configPath).then((module) => {
-        // Convert the theme object to SCSS format
-        const scssConfig = convertConfigToScss(module.default.theme);
-        const scssFileOutput = config.output || '/resources/sass/framework/_config.scss';
-        const scssPath = path.resolve(process.cwd(), scssFileOutput);
 
-        const scssPathRoot = path.resolve(process.cwd(), '/resources/sass/framework/_root.scss');
+        // Convert the theme object to SCSS format
+        const scssConfig      = convertConfigToScss(module.default.theme);
+        const configFileOutput  = config.output.config || path.resolve(process.cwd(), '/resources/sass/framework/_config.scss');
+        const rootFileOutput    = config.output.root || path.resolve(process.cwd(), '/resources/sass/framework/_root.scss');
 
         // Write the SCSS configuration to the output file
-        fs.writeFileSync(process.cwd() + scssFileOutput, scssConfig.config);
-        fs.writeFileSync(process.cwd() + scssPathRoot, scssConfig.root);
+        fs.writeFileSync(process.cwd() + configFileOutput, scssConfig.config); // _config.scss
+        fs.writeFileSync(process.cwd() + rootFileOutput, scssConfig.root); // _root.scss
 
-        console.log(`SCSS configuration file generated: ${scssPath}`);
+        console.log(`SCSS configuration file generated`);
     });
     },
   };

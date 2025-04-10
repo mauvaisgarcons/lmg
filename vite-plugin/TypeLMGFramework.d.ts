@@ -14,6 +14,9 @@ export interface Theme {
   }
 }
 
-export interface Js2ScssConfig {
-  output?: string;
+export interface LMGFrameworkConfig {
+  output?: {
+    config?: string;
+    root?: string;
+  };
 }
