@@ -1,6 +1,6 @@
 {
   "name": "@lmg-agence/framework",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "In house framework LMG",
   "main": "vite-plugin/Js2Scss.ts",
   "style": "src/framework/index.scss",
