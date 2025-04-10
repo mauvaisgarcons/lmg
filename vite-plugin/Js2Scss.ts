@@ -9,7 +9,7 @@ export default function Js2Scss(config: Js2ScssConfig) {
   return {
     name: 'lmg-js2scss',
     buildStart() {
-      let configPath = "./theme.config.js";
+      let configPath = "./default.config.js";
       const scriptPath = path.resolve(process.cwd(), 'theme.config.js');
 
       if(fs.existsSync(scriptPath)){
