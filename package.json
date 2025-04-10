@@ -10,6 +10,7 @@
   },
   "homepage": "https://github.com/mauvaisgarcons/lmg#readme",
   "scripts": {
+    "dev": "vite dev",
     "build": "vite build",
     "prepare": "npm run build"
   },

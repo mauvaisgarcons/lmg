@@ -5,8 +5,9 @@ import { hexToHSL } from './utils';
 
 // Main function to generate SCSS configuration
 export default function Js2Scss(config: Js2ScssConfig) {
+
   return {
-    name: 'js-to-scss',
+    name: 'lmg-js2scss',
     buildStart() {
       const scriptPath = path.resolve(process.cwd(), 'theme.config.js');
       // Load the JavaScript configuration file
