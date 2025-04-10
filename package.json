@@ -1,9 +1,10 @@
 {
-  "name": "lmg",
+  "name": "@lmg/framework",
   "version": "1.0.0",
   "description": "In house framework LMG",
   "main": "vite-plugin/Js2Scss.ts",
   "style": "src/framework/index.scss",
+  "repository": "https://github.com/mauvaisgarcons/lmg.git",
   "scripts": {
     "build": "vite build",
     "prepare": "npm run build"
